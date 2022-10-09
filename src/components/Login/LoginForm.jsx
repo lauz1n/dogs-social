@@ -1,40 +1,47 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import { Input, Button, useForm } from "../index"
+import { UserContext } from "../../UserContext"
+import Error from "../Helper/Error"
+import styles from "./LoginForm.module.css"
+import stylesBtn from "../FormComponents/Button/Button.module.css"
 
 const LoginForm = () => {
   const username = useForm()
   const password = useForm()
 
-  function handleSubmit(event) {
+  const { userLogin, error, loading } = useContext(UserContext)
+
+  async function handleSubmit(event) {
+    event.preventDefault()
     if (username.validate() && password.validate()) {
-      event.preventDefault()
-      fetch("https://dogsapi.origamid.dev/json/jwt-auth/v1/token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(),
-      })
-        .then((res) => {
-          console.log(res)
-          return res.json()
-        })
-        .then((json) => {
-          console.log(json)
-        })
+      userLogin(username.value, password.value)
     }
   }
 
   return (
-    <section>
-      <h1>Login</h1>
-      <form action="" onSubmit={handleSubmit}>
+    <section className="animateLeft">
+      <h1 className="title">Login</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Username" type="text" name="username" {...username} />
         <Input label="Password" type="password" name="password" {...password} />
-        <Button>Log In</Button>
+        {loading ? (
+          <Button disabled>Loading...</Button>
+        ) : (
+          <Button>Log In</Button>
+        )}
+        <Error error={error} />
       </form>
-      <Link to="/login/create">Sign Up</Link>
+      <Link className={styles.lost} to="/login/lost">
+        Lost your password?
+      </Link>
+      <div className={styles.signup}>
+        <h2 className={styles.subtitle}>Sign Up!</h2>
+        <p>Don't have an Account yet?</p>
+        <Link className={stylesBtn.button} to="/login/create">
+          Sign Up
+        </Link>
+      </div>
     </section>
   )
 }
