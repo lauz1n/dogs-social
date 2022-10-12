@@ -4,7 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import { UserStorage } from "./UserContext"
 
-import { Footer, Header, Home, Login } from "./components/index"
+import {
+  Footer,
+  Header,
+  Home,
+  Login,
+  User,
+  ProtectedRoute,
+} from "./components/index"
 
 function App() {
   return (
@@ -14,7 +21,15 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
+            <Route path="login/*" element={<Login />} />
+            <Route
+              path="account/*"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </UserStorage>
