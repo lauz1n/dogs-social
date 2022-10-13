@@ -11,3 +11,5 @@ export { default as FeedModal } from "./Feed/FeedModal"
 export { default as FeedPhotos } from "./Feed/FeedPhotos"
 export { default as Error } from "./Helper/Error"
 export { default as Loading } from "./Helper/Loading"
+
+export { default as PhotoComments } from "./Photos/PhotoComments"
