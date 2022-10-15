@@ -34,8 +34,28 @@ align-items: stretch;
   overflow: hidden;
 }
 
+.button:focus,
+.button:hover {
+  outline: none;
+}
+
 .button:focus svg path,
 .button:hover svg path {
   fill: #fea;
   stroke: #fb1;
+}
+
+@keyframes latir {
+  from {
+    opacity: 0;
+
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.button:focus svg g,
+.button:hover svg g {
+  animation: latir .6s infinite;
 }

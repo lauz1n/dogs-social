@@ -13,3 +13,5 @@ export { default as Error } from "./Helper/Error"
 export { default as Loading } from "./Helper/Loading"
 
 export { default as PhotoComments } from "./Photos/PhotoComments"
+export { default as PhotoDelete } from "../components/Photos/PhotoDelete"
+export { default as Image } from "./Helper/Image"
