@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Input, Button, useForm } from "../index"
 import { UserContext } from "../../UserContext"
 import Error from "../Helper/Error"
+import Head from "../Helper/Head"
 import styles from "./LoginForm.module.css"
 import stylesBtn from "../FormComponents/Button/Button.module.css"
 
@@ -21,6 +22,7 @@ const LoginForm = () => {
 
   return (
     <section className="animateLeft">
+      <Head title="Login" />
       <h1 className="title">Login</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Username" type="text" name="username" {...username} />
@@ -30,7 +32,7 @@ const LoginForm = () => {
         ) : (
           <Button>Log In</Button>
         )}
-        <Error error={error} />
+        <Error error={error && "User or password invalid"} />
       </form>
       <Link className={styles.lost} to="/login/lost">
         Lost your password?

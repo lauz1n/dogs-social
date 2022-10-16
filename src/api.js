@@ -108,3 +108,47 @@ export function PHOTO_DELETE(id) {
     },
   }
 }
+
+export function GET_PHOTO(id) {
+  return {
+    url: `${API_URL}/api/photo/${id}`,
+  }
+}
+
+export function PW_LOST(body) {
+  return {
+    url: API_URL + "/api/password/lost",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  }
+}
+
+export function PW_RESET(body) {
+  return {
+    url: API_URL + "/api/password/reset",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  }
+}
+
+export function GET_STATS() {
+  return {
+    url: API_URL + "/api/stats",
+    options: {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + window.localStorage.getItem("token"),
+      },
+    },
+  }
+}

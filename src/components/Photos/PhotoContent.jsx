@@ -4,11 +4,11 @@ import { UserContext } from "../../UserContext"
 import { Link } from "react-router-dom"
 import styles from "./PhotoContent.module.css"
 
-const PhotoContent = ({ data }) => {
+const PhotoContent = ({ data, single }) => {
   const user = useContext(UserContext)
   const { photo, comments } = data
   return (
-    <div className={styles.photo}>
+    <div className={`${single ? styles.single : ""} ${styles.photo}`}>
       <div className={styles.img}>
         <Image src={photo.src} alt={photo.title} />
       </div>
@@ -35,7 +35,7 @@ const PhotoContent = ({ data }) => {
             )}
           </ul>
         </div>
-        <PhotoComments id={photo.id} comments={comments} />
+        <PhotoComments id={photo.id} single={single} comments={comments} />
       </div>
     </div>
   )
